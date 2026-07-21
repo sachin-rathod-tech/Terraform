@@ -30,7 +30,7 @@ provider "aws" {
 ```
 ---
 
-## instance reate 
+## instance create 
 
 ```bash
 resource "aws_security_group" "gs01" {
