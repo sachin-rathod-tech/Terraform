@@ -1,23 +1,8 @@
 # Terraform Day 3 - AWS VPC
 
-## What is a VPC?
-
-A **Virtual Private Cloud (VPC)** is a logically isolated virtual network in AWS where you can launch AWS resources such as EC2 instances, RDS databases, and Load Balancers.
-
 ### Definition
 
 > A VPC is a private virtual network in AWS that allows you to securely launch and manage cloud resources.
-
----
-
-# Why Do We Use VPC?
-
-- Network isolation
-- Secure communication
-- Create public and private subnets
-- Control traffic using Route Tables
-- Internet access using Internet Gateway
-- Secure access using Security Groups and NACLs
 
 ---
 
