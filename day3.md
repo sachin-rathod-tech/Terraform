@@ -19,29 +19,6 @@
 
 ---
 
-# VPC Architecture
-
-```
-
-Internet
-│
-▼
-Internet Gateway
-│
-▼
-+-----------------------------------+
-| VPC (10.0.0.0/16)                 |
-|                                   |
-|  Public Subnet    Private Subnet  |
-|  10.0.1.0/24      10.0.2.0/24     |
-|      │                  │         |
-|     EC2               Database    |
-+-----------------------------------+
-
-```
-
----
-
 # Terraform VPC Code
 
 ## main.tf
@@ -240,59 +217,5 @@ A VPC (Virtual Private Cloud) is a logically isolated virtual network in AWS use
 ```
 10.0.0.0/16
 ```
-
----
-
-### Why do we enable DNS Support?
-
-To allow resources inside the VPC to resolve domain names.
-
----
-
-### Why do we enable DNS Hostnames?
-
-To assign DNS hostnames to EC2 instances that have public IP addresses.
-
----
-
-### Which Terraform resource is used to create a VPC?
-
-```hcl
-resource "aws_vpc" "my_vpc"
-```
-
----
-
-# Workflow
-
-```
-
-Write Code
-↓
-terraform init
-↓
-terraform fmt
-↓
-terraform validate
-↓
-terraform plan
-↓
-terraform apply
-↓
-AWS VPC Created
-
-```
-
----
-
-# Quick Revision
-
-- VPC = Virtual Private Cloud
-- Used to create a private network in AWS
-- `aws_vpc` resource creates a VPC
-- CIDR block defines the IP range
-- `terraform plan` previews changes
-- `terraform apply` creates the VPC
-- `terraform destroy` deletes the VPC
 
 ---
