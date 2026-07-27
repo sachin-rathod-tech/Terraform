@@ -1,3 +1,4 @@
+```bash
 resource "aws_vpc" "network" {
     cidr_block = var.vpc_cidr_block
     tags = {
@@ -61,3 +62,4 @@ resource "aws_security_group" "sg" {
     }
 }
 
+```
