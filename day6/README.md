@@ -59,8 +59,33 @@ Examples:
 - Google Cloud Storage
 
 ---
+# PRACTICE 
 
-# S3 Backend Configuration
+## provider.tf 
+
+```bash
+provider "aws" {
+  region  = "ap-northeast-2"
+  profile = "sachin_user"
+
+}
+```
+
+## main.tf
+
+```bash 
+resource "aws_instance" "vm" {
+  ami           = "ami-0bc151a94289adb52"
+  instance_type = "t3.micro"
+  key_name      = "seoul-key"
+  tags = {
+    Name = "my-vm1"
+  }
+
+}
+```
+
+## S3 Backend Configuration
 
 Create a file named **backend.tf**
 
@@ -140,19 +165,6 @@ terraform destroy
 
 ---
 
-# Backend Workflow
-
-```
-Terraform Apply
-        │
-        ▼
-Read State File
-        │
-        ▼
-Create / Update Infrastructure
-        │
-        ▼
-Save Updated State to S3
 ```
 
 ---
