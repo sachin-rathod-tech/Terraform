@@ -59,7 +59,28 @@ Examples:
 - Google Cloud Storage
 
 ---
-# PRACTICE 
+
+# Project Structure
+
+```
+terraform-backend/
+│
+├── provider.tf
+├── backend.tf
+├── main.tf
+└── README.md
+```
+
+---
+
+* **install aws cli**
+```bash
+aws configure --profile "sachin_user"
+```
+* create s3 bucket enable **Version ID**
+
+---
+
 
 ## provider.tf 
 
@@ -69,6 +90,9 @@ provider "aws" {
   profile = "sachin_user"
 
 }
+```
+```bash
+terraform init
 ```
 
 ## main.tf
@@ -85,6 +109,14 @@ resource "aws_instance" "vm" {
 }
 ```
 
+```bash
+terraform fmt
+terraform validate
+terraform plan
+terraform apply
+```
+
+
 ## S3 Backend Configuration
 
 Create a file named **backend.tf**
@@ -92,25 +124,11 @@ Create a file named **backend.tf**
 ```hcl
 terraform {
   backend "s3" {
-    bucket  = "my-terraform-state-bucket"
-    key     = "backend/terraform.tfstate"
+    bucket  = "sacreface-s3-bucket"
     region  = "ap-northeast-2"
-    profile = "default"
+    key     = "backend/terraform.tfstate"
+    profile = "sachin_user"
   }
-}
-```
-
----
-
-# Project Structure
-
-```
-terraform-backend/
-│
-├── provider.tf
-├── backend.tf
-├── main.tf
-└── README.md
 ```
 
 ---
