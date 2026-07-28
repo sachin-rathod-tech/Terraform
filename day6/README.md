@@ -129,6 +129,8 @@ terraform {
     key     = "backend/terraform.tfstate"
     profile = "sachin_user"
   }
+}
+
 ```
 
 ---
