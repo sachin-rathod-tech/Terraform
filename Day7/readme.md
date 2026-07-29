@@ -149,6 +149,91 @@ Destroy + Create
 
 ---
 
+## correct. It will create 4 EC2 instances using the **count** meta-argument.
+
+
+```bash
+resource "aws_instance" "vm1" {
+  count         = 4
+  ami           = "ami-0ae6acc9dcb61caa3"
+  instance_type = "t3.micro"
+  key_name      = "seoul-key"
+
+  tags = {
+    Name = "karna-${count.index + 1}"
+  }
+}
+```
+
+## Your for_each code is correct. It will create 3 EC2 instances
+
+```bash
+resource "aws_instance" "vm2" {
+  for_each = toset(["dev", "test", "prod"])
+
+  ami           = "ami-0ae6acc9dcb61caa3"
+  instance_type = "t3.micro"
+  key_name      = "seoul-key"
+
+  tags = {
+    Name = "env-${each.key}"
+  }
+}
+```
+## If you want to create EC2 instances with **different names** and **different instance types**, use **`for_each` with a map** 
+
+```bash
+locals {
+  instances = {
+    dev  = "t2.micro"
+    test = "t3.micro"
+    prod = "t3.small"
+  }
+}
+
+resource "aws_instance" "vm" {
+  for_each = local.instances
+
+  ami           = "ami-0ae6acc9dcb61caa3"
+  instance_type = each.value
+  key_name      = "seoul-key"
+
+  tags = {
+    Name = each.key
+  }
+}
+```
+
+## Output
+
+| Instance Name | Instance Type |
+|--------------|---------------|
+| dev          | t2.micro      |
+| test         | t3.micro      |
+| prod         | t3.small      |
+
+
+## Using count with different instance types
+
+```bash
+
+locals {
+  names = ["dev", "test"]
+  instance_types = ["t3.micro", "t3.small"]
+}
+
+resource "aws_instance" "vm1" {
+  count = 2
+  ami           = "ami-0ae6acc9dcb61caa3"
+  instance_type = local.instance_types[count.index]
+  key_name      = "seoul-key"
+
+  tags = {
+    Name = local.names[count.index]
+  }
+}
+```
+
 # Commands
 
 ```bash
