@@ -74,9 +74,21 @@ terraform-backend/
 ---
 
 * **install aws cli**
+
+**3:Install AWS CLI on Ubuntu**
+````
+sudo apt install unzip -y
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+````
+
+
+**4:Configure AWS CLI**
 ```bash
 aws configure --profile "sachin_user"
 ```
+
 * create s3 bucket enable **Version ID**
 
 ---
